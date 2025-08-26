@@ -1,0 +1,17 @@
+{
+  "log_level": "error",
+  "log_file_path": "/var/log/nordvpn.log",
+  "log_file_count": 0,
+  "authentication_token": "AUTHENTICATION_TOKEN",
+  "adapter_type": "linux-native",
+  "device_identity_file_path": "/etc/nordvpn/data.json",
+  "interface": {
+    "name": "nordvpn",
+    "config_provider": "uci"
+  },
+  "vpn": {
+    "server_endpoint": "IP:PORT",
+    "server_pubkey": "PUBLIC_KEY"
+  }
+}
+
