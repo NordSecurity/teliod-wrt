@@ -34,9 +34,16 @@ define Package/nordvpn/description
 	NordVPN is the gateway to a secure and private access to the internet.
 endef
 
+BINFILE := $(PKG_BUILD_DIR)/target/$(RUSTC_TARGET_ARCH)/release/teliod
+
 define Build/Compile
 	$(info RUSTC_TARGET_ARCH=$(RUSTC_TARGET_ARCH))	
+	$(info PKG_BUILD_DIR=$(PKG_BUILD_DIR))
+	$(info CARGO_PKG_VARS=$(CARGO_PKG_VARS))
+
 	cd $(PKG_BUILD_DIR) && $(CARGO_PKG_VARS) BYPASS_LLT_SECRETS=1 cargo build -p teliod --release --target $(RUSTC_TARGET_ARCH)
+	
+	$(CURDIR)/../$(PKG_NAME)/version_placeholder_fix.py "$(BINFILE)" "$(PKG_VERSION)+openwrt"
 endef
 
 define Package/nordvpn/install
